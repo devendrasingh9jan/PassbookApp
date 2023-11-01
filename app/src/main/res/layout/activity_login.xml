@@ -21,36 +21,32 @@
         android:textSize="35sp"
         android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_weight="1"
-        android:text="Id" />
 
     <EditText
         android:id="@+id/emailOrPhone"
+        android:drawableStart="@drawable/custom_email_icon"
+        android:background="@drawable/custom_input"
+        android:drawablePadding="12dp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
         android:layout_weight="1"
         android:ems="10"
         android:hint="Email or Phone"
         android:inputType="text" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_weight="1"
-        android:text="Password" />
-
     <EditText
         android:id="@+id/password"
+        android:drawableStart="@drawable/custom_lock_icon"
+        android:background="@drawable/custom_input"
+        android:drawablePadding="12dp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
         android:layout_weight="1"
         android:ems="10"
         android:hint="Password"
