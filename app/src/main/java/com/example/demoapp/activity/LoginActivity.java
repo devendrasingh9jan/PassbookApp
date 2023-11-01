@@ -1,4 +1,4 @@
-package com.example.demoapp;
+package com.example.demoapp.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.demoapp.R;
 import com.example.demoapp.model.User;
 import com.example.demoapp.repository.UserRepository;
 

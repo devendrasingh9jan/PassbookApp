@@ -1,15 +1,15 @@
-package com.example.demoapp;
+package com.example.demoapp.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.demoapp.R;
 import com.example.demoapp.model.User;
 import com.example.demoapp.repository.UserRepository;
 

@@ -1,4 +1,4 @@
-package com.example.demoapp;
+package com.example.demoapp.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.demoapp.R;
 import com.example.demoapp.model.User;
 
 public class MainActivity extends AppCompatActivity {

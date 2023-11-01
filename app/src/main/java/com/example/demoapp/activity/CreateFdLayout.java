@@ -1,21 +1,18 @@
-package com.example.demoapp;
+package com.example.demoapp.activity;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.demoapp.R;
 import com.example.demoapp.model.FixedDeposit;
 import com.example.demoapp.model.User;
 import com.example.demoapp.repository.FdRepository;
