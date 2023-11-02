@@ -31,94 +31,65 @@
         android:text="Fill details correctly..."
         android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_weight="1"
-        android:gravity="left"
-        android:text="Name" />
-
     <EditText
         android:id="@+id/name"
+        android:drawableStart="@drawable/ic_person_selector"
+        android:background="@drawable/custom_input"
+        android:drawablePadding="12dp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
         android:layout_weight="1"
         android:ems="10"
         android:hint="Name"
         android:inputType="text" />
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_weight="1"
-        android:text="Email" />
-
     <EditText
-        android:id="@+id/email"
+        android:id="@+id/emailSignUp"
+        android:drawableStart="@drawable/ic_email_selector"
+        android:background="@drawable/custom_input"
+        android:drawablePadding="12dp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
         android:layout_weight="1"
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress" />
 
-    <TextView
-        android:id="@+id/phoneTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_weight="1"
-        android:text="Phone" />
-
     <EditText
         android:id="@+id/phoneEditText"
+        android:drawableStart="@drawable/ic_phone_selector"
+        android:background="@drawable/custom_input"
+        android:drawablePadding="12dp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
         android:layout_weight="1"
         android:ems="10"
         android:hint="Phone"
         android:inputType="number|phone" />
 
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_weight="1"
-        android:text="Password" />
-
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/passwordSignUp"
+        android:drawableStart="@drawable/ic_lock_selector"
+        android:background="@drawable/custom_input"
+        android:drawablePadding="12dp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
         android:layout_weight="1"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword" />
-
-    <!--<TextView
-        android:id="@+id/textView8"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_weight="1"
-        android:text="Write something about yourself" />
-
-    <EditText
-        android:id="@+id/writeSomething"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_weight="1"
-        android:ems="10"
-        android:hint="Write here"
-        android:inputType="text" />-->
 
     <TextView
         android:id="@+id/textView9"

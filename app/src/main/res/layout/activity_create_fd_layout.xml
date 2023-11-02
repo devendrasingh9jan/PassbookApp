@@ -26,114 +26,110 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/textViewNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_weight="1"
-            android:gravity="left"
-            android:text="Number" />
-
         <EditText
             android:id="@+id/editTextNumber"
+            android:drawableStart="@drawable/ic_number_selector"
+            android:background="@drawable/custom_input"
+            android:drawablePadding="12dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="number" />
-
-        <TextView
-            android:id="@+id/textViewAmount"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="16dp"
             android:layout_weight="1"
-            android:gravity="left"
-            android:text="Amount" />
+            android:ems="10"
+            android:hint="Number"
+            android:inputType="number" />
 
         <EditText
             android:id="@+id/editTextAmount"
+            android:drawableStart="@drawable/ic_rupee_selector"
+            android:background="@drawable/custom_input"
+            android:drawablePadding="12dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="numberDecimal" />
-
-        <TextView
-            android:id="@+id/textViewRate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="16dp"
             android:layout_weight="1"
-            android:gravity="left"
-            android:text="Rate" />
+            android:ems="10"
+            android:hint="Amount"
+            android:inputType="numberDecimal" />
 
         <EditText
             android:id="@+id/editTextRate"
+            android:drawableStart="@drawable/ic_rate_selector"
+            android:background="@drawable/custom_input"
+            android:drawablePadding="12dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="numberDecimal" />
-
-
-        <TextView
-            android:id="@+id/textViewMaturityAmount"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="16dp"
             android:layout_weight="1"
-            android:gravity="left"
-            android:text="Maturity Amount" />
+            android:ems="10"
+            android:hint="Rate"
+            android:inputType="numberDecimal" />
 
         <EditText
             android:id="@+id/editTextMaturityAmount"
+            android:drawableStart="@drawable/ic_rupee_selector"
+            android:background="@drawable/custom_input"
+            android:drawablePadding="12dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="numberDecimal" />
-
-        <TextView
-            android:id="@+id/textViewCreateDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="16dp"
             android:layout_weight="1"
-            android:gravity="left"
-            android:text="Created Date" />
+            android:ems="10"
+            android:hint="Maturity Amount"
+            android:inputType="numberDecimal" />
 
         <EditText
             android:id="@+id/editTextCreatedDate"
+            android:drawableStart="@drawable/ic_calender_selector"
+            android:background="@drawable/custom_input"
+            android:drawablePadding="12dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:hint="yyyy-MM-dd"
-            android:inputType="none" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="16dp"
             android:layout_weight="1"
-            android:gravity="left"
-            android:text="End Date" />
+            android:ems="10"
+            android:hint="Created Date (yyyy-MM-dd)"
+            android:inputType="none"/>
 
         <EditText
             android:id="@+id/editTextEndDate"
+            android:drawableStart="@drawable/ic_calender_selector"
+            android:background="@drawable/custom_input"
+            android:drawablePadding="12dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:hint="yyyy-MM-dd"
-            android:inputType="none" />
-
-        <TextView
-            android:id="@+id/textViewBank"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="16dp"
             android:layout_weight="1"
-            android:gravity="left"
-            android:text="Bank with Address" />
+            android:ems="10"
+            android:hint="End Date (yyyy-MM-dd)"
+            android:inputType="none"/>
 
         <EditText
             android:id="@+id/editTextBankAddress"
+            android:drawableStart="@drawable/ic_bank_selector"
+            android:background="@drawable/custom_input"
+            android:drawablePadding="12dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp" />
+            android:layout_height="60dp"
+            android:layout_marginTop="16dp"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="Bank Address"
+            android:inputType="text" />
 
         <Button
             android:id="@+id/buttonCreateFd"

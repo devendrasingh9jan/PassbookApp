@@ -81,7 +81,10 @@ public class CreateFdLayout extends AppCompatActivity {
                 return;
             }
             fixedDeposit.setBankWithAddress(fdBankAddress.getText().toString().trim());
-
+            if(fixedDeposit.getAmount()>fixedDeposit.getMaturityAmount()){
+                fdAmount.setError("Enter smaller amount then Maturity amount.");
+                fdMaturityAmount.setError("Enter greater amount then Amount.");
+            }
             Long daysLeft = ChronoUnit.DAYS.between(currentDate, fixedDeposit.getEndDate());
             fixedDeposit.setDaysLeft(Math.toIntExact(daysLeft));
             FdRepository fdRepository = new FdRepository(this);

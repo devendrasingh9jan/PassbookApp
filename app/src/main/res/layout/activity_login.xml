@@ -24,7 +24,7 @@
 
     <EditText
         android:id="@+id/emailOrPhone"
-        android:drawableStart="@drawable/custom_email_icon"
+        android:drawableStart="@drawable/ic_email_selector"
         android:background="@drawable/custom_input"
         android:drawablePadding="12dp"
         android:paddingStart="12dp"
@@ -39,7 +39,7 @@
 
     <EditText
         android:id="@+id/password"
-        android:drawableStart="@drawable/custom_lock_icon"
+        android:drawableStart="@drawable/ic_lock_selector"
         android:background="@drawable/custom_input"
         android:drawablePadding="12dp"
         android:paddingStart="12dp"

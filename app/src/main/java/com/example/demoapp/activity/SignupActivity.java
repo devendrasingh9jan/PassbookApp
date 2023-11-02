@@ -90,9 +90,9 @@ public class SignupActivity extends AppCompatActivity {
         signup = findViewById(R.id.signup);
         clear = findViewById(R.id.clear);
         name = findViewById(R.id.name);
-        email = findViewById(R.id.email);
+        email = findViewById(R.id.emailSignUp);
         phoneEditText = findViewById(R.id.phoneEditText);
-        password = findViewById(R.id.password);
+        password = findViewById(R.id.passwordSignUp);
         male = findViewById(R.id.male);
         female = findViewById(R.id.female);
         others = findViewById(R.id.others);

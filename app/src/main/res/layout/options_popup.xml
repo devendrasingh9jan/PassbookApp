@@ -10,13 +10,13 @@
         android:layout_width="50dp"
         android:layout_height="45dp"
         android:clickable="true"
-        android:src="@drawable/camera" />
+        android:src="@drawable/ic_camera_selector" />
 
     <ImageView
         android:id="@+id/depositFormView"
         android:layout_width="50dp"
         android:layout_height="45dp"
         android:clickable="true"
-        android:src="@drawable/form" />
+        android:src="@drawable/ic_form_selector" />
 
 </LinearLayout>

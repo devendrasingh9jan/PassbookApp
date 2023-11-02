@@ -13,7 +13,7 @@
         android:theme="@style/Theme.DemoApp"
         tools:targetApi="31">
         <activity
-            android:name=".CreateFdLayout"
+            android:name=".activity.CreateFdLayout"
             android:exported="false" />
         <activity
             android:name=".activity.ForgetPasswordActivity"
