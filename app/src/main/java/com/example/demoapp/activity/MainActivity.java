@@ -11,28 +11,43 @@ import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.demoapp.R;
+import com.example.demoapp.adapter.RecyclerFixedDepositAdapter;
+import com.example.demoapp.model.FixedDeposit;
 import com.example.demoapp.model.User;
+import com.example.demoapp.repository.FdRepository;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private PopupWindow popupWindow;
+    private RecyclerView recyclerView;
+    private ImageView createFdIcon;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        ImageView createFdIcon = findViewById(R.id.createFdIcon);
-
-        // Handle "create" icon click
+        initializeFields();
+        showFixedDeposits();
         createFdIcon.setOnClickListener(view ->{
             showOptionsPopup(view);
         });
 
+    }
 
+    private void showFixedDeposits() {
+        FdRepository fdRepository = new FdRepository(this);
+        User loggedInUser = getLoggedInUser();
+        List<FixedDeposit> fixedDepositList = fdRepository.getAllFixedDeposits(loggedInUser.getId());
+        recyclerView.setAdapter(new RecyclerFixedDepositAdapter(this, fixedDepositList));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
     private void showOptionsPopup(View anchorView) {
@@ -63,16 +78,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void formLayout() {
+        User loggedInUser = getLoggedInUser();
+        Intent intent2 = new Intent(this, CreateFdLayout.class);
+            intent2.putExtra("loggedInUser", loggedInUser);
+            startActivity(intent2);
+    }
+
+    private User getLoggedInUser(){
         Intent intent = getIntent();
         if (intent.hasExtra("loggedInUser")) {
             User loggedInUser = (User) intent.getSerializableExtra("loggedInUser");
-
-            // Create a new Intent to start CreateFdLayout
-            Intent intent2 = new Intent(this, CreateFdLayout.class);
-            intent2.putExtra("loggedInUser", loggedInUser);
-
-            // Start CreateFdLayout with the new Intent
-            startActivity(intent2);
+            return loggedInUser;
+        } else {
+            startActivity(new Intent(this,LoginActivity.class));
         }
+        return null;
+    }
+
+    private void initializeFields() {
+        createFdIcon = findViewById(R.id.createFdIcon);
+        recyclerView = findViewById(R.id.recyclerViewFixedDeposits);
     }
 }

@@ -105,9 +105,17 @@ public class FdRepository extends Repository{
                 fixedDepositList.add(fixedDeposit);
             } while (cursor.moveToNext());
         }
-
         cursor.close();
         return fixedDepositList;
     }
 
+    public List<FixedDeposit> getAllFixedDeposits(Long userId) {
+        SQLiteDatabase db = getWritableDatabase();
+        String selection = PassbookConstants.COLUMN_USER_ID + "=?";
+        String[] selectionArgs = new String[]{String.valueOf(userId)};
+        Cursor cursor = db.query(PassbookConstants.TABLE_FIXED_DEPOSIT, null, selection, selectionArgs, null, null, null, null);
+        List<FixedDeposit> fixedDeposits = getFixedDeposits(cursor);
+        db.close();
+        return fixedDeposits;
+    }
 }

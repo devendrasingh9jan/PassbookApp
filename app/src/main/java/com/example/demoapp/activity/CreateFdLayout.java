@@ -96,7 +96,9 @@ public class CreateFdLayout extends AppCompatActivity {
             }
             if (fdRepository.insert(fixedDeposit)) {
                 Toast.makeText(this,"Fd Created",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this,MainActivity.class));
+                Intent intent1 = new Intent(getIntent());
+                intent1.setClass(this,MainActivity.class);
+                startActivity(intent1);
             } else {
                 Toast.makeText(this,"Fd Creation failed.",Toast.LENGTH_SHORT).show();
             }

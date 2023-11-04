@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,7 +8,9 @@
     tools:context=".activity.MainActivity"
     android:orientation="vertical">
 
+    <!-- Header -->
     <LinearLayout
+        android:id="@+id/headerLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -35,26 +38,19 @@
             android:layout_height="45dp"
             android:clickable="true"
             android:src="@drawable/ic_add_selector" />
-
     </LinearLayout>
 
-    <!--<LinearLayout
+    <!-- RecyclerView for Fixed Deposits -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewFixedDeposits"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="100dp"
-        android:layout_weight="1"
-        android:orientation="horizontal">
+        android:layout_above="@+id/footerLayout"
+        android:layout_below="@+id/headerLayout" />
 
-        <TextView
-            android:id="@+id/textView13"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Load fds here" />
-    </LinearLayout>-->
-
-
-
+    <!-- Footer (Bottom Two Icons) -->
     <LinearLayout
+        android:id="@+id/footerLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="bottom"
@@ -70,8 +66,8 @@
 
             <ImageView
                 android:id="@+id/depositImageView"
-                android:layout_width="50dp"
-                android:layout_height="45dp"
+                android:layout_width="40dp"
+                android:layout_height="35dp"
                 android:clickable="true"
                 android:src="@drawable/deposit" />
 
@@ -91,8 +87,8 @@
 
             <ImageView
                 android:id="@+id/expensesImageView"
-                android:layout_width="50dp"
-                android:layout_height="45dp"
+                android:layout_width="40dp"
+                android:layout_height="35dp"
                 android:clickable="true"
                 android:src="@drawable/expense" />
 
@@ -102,7 +98,5 @@
                 android:text="Expenses"
                 android:layout_gravity="center_horizontal" />
         </LinearLayout>
-
     </LinearLayout>
-
 </RelativeLayout>
