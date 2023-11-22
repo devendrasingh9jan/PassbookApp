@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.MainActivity"
+    tools:context=".activity.MainActivityExpenses"
     android:orientation="vertical">
 
     <!-- Header -->
@@ -18,7 +18,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/textViewFd"
+            android:id="@+id/textViewExpenses"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center|top"
@@ -27,65 +27,10 @@
             android:gravity="center|top"
             android:hapticFeedbackEnabled="false"
             android:paddingTop="10dp"
-            android:text="Fixed Deposits"
+            android:text="Expenses"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
             android:textStyle="bold" />
-
-        <ImageView
-            android:id="@+id/createFdIcon"
-            android:layout_width="50dp"
-            android:paddingRight="10dp"
-            android:layout_height="45dp"
-            android:clickable="true"
-            android:src="@drawable/ic_add_selector" />
     </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/fdStatusLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/headerLayout"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/activeFd"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:text="ACTIVE" />
-
-        <TextView
-            android:id="@+id/expiredFd"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:text="EXPIRED" />
-    </LinearLayout>
-
-    <!-- RecyclerView for Fixed Deposits -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewActiveFixedDeposits"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/footerLayout"
-        android:layout_below="@+id/fdStatusLayout" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewExpiredFixedDeposits"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/footerLayout"
-        android:layout_below="@+id/fdStatusLayout" />
 
     <!-- Footer (Bottom Two Icons) -->
     <LinearLayout

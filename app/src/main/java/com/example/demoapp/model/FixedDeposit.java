@@ -16,6 +16,10 @@ public class FixedDeposit implements Serializable {
     private Integer daysLeft;
     private Long userId; // Foreign key referencing User table
 
+    public boolean isActive() {
+        return createdDate!=null && !createdDate.isAfter(LocalDate.now()) && (!endDate.isBefore(LocalDate.now()));
+    }
+
     public FixedDeposit() {
     }
 
