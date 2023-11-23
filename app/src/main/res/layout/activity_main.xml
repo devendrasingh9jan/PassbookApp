@@ -40,58 +40,34 @@
             android:src="@drawable/ic_add_selector" />
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/fdStatusLayout"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/fd_type_tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/headerLayout"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:layout_below="@+id/headerLayout">
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ACTIVE"/>
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="EXPIRED"/>
+    </com.google.android.material.tabs.TabLayout>
 
-        <TextView
-            android:id="@+id/activeFd"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:text="ACTIVE" />
-
-        <TextView
-            android:id="@+id/expiredFd"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:text="EXPIRED" />
-    </LinearLayout>
-
-    <!-- RecyclerView for Fixed Deposits -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewActiveFixedDeposits"
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/view_fd_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/footerLayout"
-        android:layout_below="@+id/fdStatusLayout" />
+        android:layout_below="@id/fd_type_tab_layout"
+        android:layout_above="@+id/footerLayout"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewExpiredFixedDeposits"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/footerLayout"
-        android:layout_below="@+id/fdStatusLayout" />
 
     <!-- Footer (Bottom Two Icons) -->
     <LinearLayout
         android:id="@+id/footerLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="46dp"
         android:layout_alignParentBottom="true"
         android:gravity="bottom"
         android:orientation="horizontal">
@@ -99,7 +75,7 @@
         <ImageView
             android:id="@+id/depositsImageView"
             android:layout_width="wrap_content"
-            android:layout_height="60dp"
+            android:layout_height="45dp"
             android:layout_gravity="center_horizontal"
             android:layout_weight="1"
             android:clickable="true"
@@ -110,7 +86,7 @@
         <ImageView
             android:id="@+id/expensesImageView"
             android:layout_width="wrap_content"
-            android:layout_height="60dp"
+            android:layout_height="45dp"
             android:layout_gravity="center_horizontal"
             android:layout_weight="1"
             android:clickable="true"

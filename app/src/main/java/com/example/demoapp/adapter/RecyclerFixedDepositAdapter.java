@@ -42,4 +42,9 @@ public class RecyclerFixedDepositAdapter extends RecyclerView.Adapter<FdViewHold
     public int getItemCount() {
         return fixedDepositList.size();
     }
+
+    public void setData(List<FixedDeposit> fixedDepositList) {
+        this.fixedDepositList = fixedDepositList;
+        notifyDataSetChanged();
+    }
 }

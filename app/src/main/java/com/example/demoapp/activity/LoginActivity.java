@@ -27,6 +27,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         initializeFields();
 
+        emailOrPhone.setText("devendra.singh9jan98@gmail.com");
+        password.setText("1234");
         register.setOnClickListener( view -> {
             Intent intent = new Intent(this, SignupActivity.class);
             intent.putExtra("Welcome","Welcome");
