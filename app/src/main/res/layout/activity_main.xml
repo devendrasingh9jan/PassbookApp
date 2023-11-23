@@ -8,89 +8,17 @@
     tools:context=".activity.MainActivity"
     android:orientation="vertical">
 
-    <!-- Header -->
-    <LinearLayout
-        android:id="@+id/headerLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/textViewFd"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center|top"
-            android:layout_marginLeft="25dp"
-            android:layout_weight="1"
-            android:gravity="center|top"
-            android:hapticFeedbackEnabled="false"
-            android:paddingTop="10dp"
-            android:text="Fixed Deposits"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:id="@+id/createFdIcon"
-            android:layout_width="50dp"
-            android:paddingRight="10dp"
-            android:layout_height="45dp"
-            android:clickable="true"
-            android:src="@drawable/ic_add_selector" />
-    </LinearLayout>
-
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/fd_type_tab_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/headerLayout">
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="ACTIVE"/>
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="EXPIRED"/>
-    </com.google.android.material.tabs.TabLayout>
-
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/view_fd_pager"
+    <FrameLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/fd_type_tab_layout"
-        android:layout_above="@+id/footerLayout"/>
-
+        android:layout_above="@+id/bottomNavigation"/>
 
     <!-- Footer (Bottom Two Icons) -->
-    <LinearLayout
-        android:id="@+id/footerLayout"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
-        android:layout_height="46dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:gravity="bottom"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/depositsImageView"
-            android:layout_width="wrap_content"
-            android:layout_height="45dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:gravity="center"
-            android:src="@drawable/ic_deposit_gray" />
-
-
-        <ImageView
-            android:id="@+id/expensesImageView"
-            android:layout_width="wrap_content"
-            android:layout_height="45dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:gravity="center"
-            android:src="@drawable/ic_expenses_rupee_gray" />
-    </LinearLayout>
+        app:menu="@menu/bottom_nav_menu"/>
 </RelativeLayout>

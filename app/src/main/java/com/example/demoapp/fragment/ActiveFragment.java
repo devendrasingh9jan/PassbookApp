@@ -31,10 +31,8 @@ public class ActiveFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_active, container, false);
         initializeFields(view);
         MainActivity mainActivity = (MainActivity) getActivity();
-
         // Initialize the adapter
         activeAdapter = new RecyclerFixedDepositAdapter(mainActivity, getActiveDepositList());
-
         // Set the layout manager and adapter for the active RecyclerView
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(activeAdapter);
