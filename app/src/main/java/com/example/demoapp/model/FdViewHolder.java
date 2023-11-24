@@ -10,7 +10,7 @@ import com.example.demoapp.R;
 
 public class FdViewHolder extends RecyclerView.ViewHolder {
 
-    public TextView amountValueView, tenureValueView;
+    public TextView amountValueView, tenureValueView, daysLeftView;
     public FdViewHolder(@NonNull View itemView) {
         super(itemView);
         initializeFields(itemView);
@@ -19,5 +19,6 @@ public class FdViewHolder extends RecyclerView.ViewHolder {
     private void initializeFields(View itemView) {
         amountValueView = itemView.findViewById(R.id.textViewAmountValue);
         tenureValueView = itemView.findViewById(R.id.textViewTenureValue);
+        daysLeftView = itemView.findViewById(R.id.textViewDaysLeftValue);
     }
 }

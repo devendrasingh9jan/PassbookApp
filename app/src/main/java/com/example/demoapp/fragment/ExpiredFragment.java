@@ -55,7 +55,7 @@ public class ExpiredFragment extends Fragment {
             Log.d("ExpiredFragment", "Number of expired deposits: " + fixedDepositList.size());
 
             // Filter active deposits
-            return fixedDepositList.stream().filter(fd -> fd.getTenure() < 0).collect(Collectors.toList());
+            return fixedDepositList.stream().filter(fd -> fd.getTenure() <= 0).collect(Collectors.toList());
         }
 
         return new ArrayList<>();

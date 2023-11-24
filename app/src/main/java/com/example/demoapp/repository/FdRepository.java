@@ -4,19 +4,16 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import androidx.annotation.Nullable;
 
 import com.example.demoapp.constants.PassbookConstants;
 import com.example.demoapp.model.FixedDeposit;
-import com.example.demoapp.model.User;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class FdRepository extends Repository{
 
@@ -37,7 +34,7 @@ public class FdRepository extends Repository{
         values.put(PassbookConstants.COLUMN_CREATED_DATE, fixedDeposit.getCreatedDate().toString());
         values.put(PassbookConstants.COLUMN_END_DATE, fixedDeposit.getEndDate().toString());
         values.put(PassbookConstants.COLUMN_BANK_WITH_ADDRESS, fixedDeposit.getBankWithAddress());
-        values.put(PassbookConstants.COLUMN_DAYS_LEFT, fixedDeposit.getDaysLeft());
+        values.put(PassbookConstants.COLUMN_NOTES, fixedDeposit.getNotes());
         long insert = db.insert(PassbookConstants.TABLE_FIXED_DEPOSIT, null, values);
         db.close();
         if (insert!=0){
@@ -74,12 +71,12 @@ public class FdRepository extends Repository{
         int createdDateColumnIndex = cursor.getColumnIndex(PassbookConstants.COLUMN_CREATED_DATE);
         int endDateColumnIndex = cursor.getColumnIndex(PassbookConstants.COLUMN_END_DATE);
         int bankWithAddressColumnIndex = cursor.getColumnIndex(PassbookConstants.COLUMN_BANK_WITH_ADDRESS);
-        int daysLeftColumnIndex = cursor.getColumnIndex(PassbookConstants.COLUMN_DAYS_LEFT);
+        int notesColumnIndex = cursor.getColumnIndex(PassbookConstants.COLUMN_NOTES);
 
         if (idColumnIndex ==-1 || userIdColumnIndex == -1 || numberColumnIndex == -1 || amountColumnIndex == -1
                 || tenureColumnIndex == -1 || rateColumnIndex == -1 || maturityAmountColumnIndex == -1
                 || createdDateColumnIndex == -1 || endDateColumnIndex == -1
-                || bankWithAddressColumnIndex == -1 || daysLeftColumnIndex == -1) {
+                || bankWithAddressColumnIndex == -1|| notesColumnIndex == -1) {
             return fixedDepositList;
         }
 
@@ -95,13 +92,14 @@ public class FdRepository extends Repository{
                 String createdDateString = cursor.getString(createdDateColumnIndex);
                 String endDateString = cursor.getString(endDateColumnIndex);
                 String bankWithAddress = cursor.getString(bankWithAddressColumnIndex);
-                Integer daysLeft = cursor.getInt(daysLeftColumnIndex);
+                String notes = cursor.getString(notesColumnIndex);
 
                 LocalDate createdDate = LocalDate.parse(createdDateString);
                 LocalDate endDate = LocalDate.parse(endDateString);
+                Long daysLeftToExpire = ChronoUnit.DAYS.between(LocalDate.now(), endDate);
 
                 FixedDeposit fixedDeposit = new FixedDeposit(id, number, amount, tenure, rate, maturityAmount,
-                        createdDate, endDate, bankWithAddress, daysLeft,userId);
+                        createdDate, endDate, bankWithAddress, Math.toIntExact(daysLeftToExpire),notes ,userId);
                 fixedDepositList.add(fixedDeposit);
             } while (cursor.moveToNext());
         }

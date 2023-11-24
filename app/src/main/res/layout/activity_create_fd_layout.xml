@@ -131,6 +131,21 @@
             android:hint="Bank Address"
             android:inputType="text" />
 
+        <EditText
+            android:id="@+id/editTextNotes"
+            android:drawableStart="@drawable/ic_form_selector"
+            android:background="@drawable/custom_input"
+            android:drawablePadding="12dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="16dp"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="Notes"
+            android:inputType="text" />
+
         <Button
             android:id="@+id/buttonCreateFd"
             android:layout_width="wrap_content"

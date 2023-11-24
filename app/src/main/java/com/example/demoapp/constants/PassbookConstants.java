@@ -8,7 +8,7 @@ public class PassbookConstants {
     }
 
     public static final String DATABASE_NAME = "Passbook";
-    public static final int DATABASE_VERSION = 13;
+    public static final int DATABASE_VERSION = 14;
 
     // Columns of user table
     public static final String TABLE_USER = "user";
@@ -30,5 +30,7 @@ public class PassbookConstants {
     public static final String COLUMN_END_DATE = "end_date";
     public static final String COLUMN_BANK_WITH_ADDRESS = "bank_with_address";
     public static final String COLUMN_DAYS_LEFT = "days_left";
+
+    public static final String COLUMN_NOTES ="notes";
 
 }

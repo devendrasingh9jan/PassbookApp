@@ -14,6 +14,7 @@ public class FixedDeposit implements Serializable {
     private LocalDate endDate;
     private String bankWithAddress;
     private Integer daysLeft;
+    private String notes;
     private Long userId; // Foreign key referencing User table
 
     public boolean isActive() {
@@ -23,7 +24,7 @@ public class FixedDeposit implements Serializable {
     public FixedDeposit() {
     }
 
-    public FixedDeposit(Integer id, Long number, Double amount, Integer tenure, Double rate, Double maturityAmount, LocalDate createdDate, LocalDate endDate, String bankWithAddress, Integer daysLeft) {
+    public FixedDeposit(Integer id, Long number, Double amount, Integer tenure, Double rate, Double maturityAmount, LocalDate createdDate, LocalDate endDate, String bankWithAddress, Integer daysLeft, String notes, Long userId) {
         this.id = id;
         this.number = number;
         this.amount = amount;
@@ -34,19 +35,7 @@ public class FixedDeposit implements Serializable {
         this.endDate = endDate;
         this.bankWithAddress = bankWithAddress;
         this.daysLeft = daysLeft;
-    }
-
-    public FixedDeposit(Integer id, Long number, Double amount, Integer tenure, Double rate, Double maturityAmount, LocalDate createdDate, LocalDate endDate, String bankWithAddress, Integer daysLeft, Long userId) {
-        this.id = id;
-        this.number = number;
-        this.amount = amount;
-        this.tenure = tenure;
-        this.rate = rate;
-        this.maturityAmount = maturityAmount;
-        this.createdDate = createdDate;
-        this.endDate = endDate;
-        this.bankWithAddress = bankWithAddress;
-        this.daysLeft = daysLeft;
+        this.notes = notes;
         this.userId = userId;
     }
 
@@ -138,6 +127,14 @@ public class FixedDeposit implements Serializable {
         this.number = number;
     }
 
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
     @Override
     public String toString() {
         return "FixedDeposit{" +
@@ -151,6 +148,7 @@ public class FixedDeposit implements Serializable {
                 ", endDate=" + endDate +
                 ", bankWithAddress='" + bankWithAddress + '\'' +
                 ", daysLeft=" + daysLeft +
+                ", notes=" + notes +
                 ", userId=" + userId +
                 '}';
     }

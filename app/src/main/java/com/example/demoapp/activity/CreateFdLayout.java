@@ -20,7 +20,7 @@ import com.example.demoapp.repository.FdRepository;
 public class CreateFdLayout extends AppCompatActivity {
 
     private Button create;
-    private EditText fdNumber, fdAmount, fdRate, fdMaturityAmount, fdCreateDate, fdEndDate, fdBankAddress;
+    private EditText fdNumber, fdAmount, fdRate, fdMaturityAmount, fdCreateDate, fdEndDate, fdBankAddress, fdNotes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +51,8 @@ public class CreateFdLayout extends AppCompatActivity {
                 return;
             }
             fixedDeposit.setAmount(Double.valueOf(fdAmount.getText().toString().trim()));
-            Long daysBetween = ChronoUnit.DAYS.between(fixedDeposit.getCreatedDate(), fixedDeposit.getEndDate());
-            fixedDeposit.setTenure(Math.toIntExact(daysBetween));
+            Long tenure = ChronoUnit.DAYS.between(fixedDeposit.getCreatedDate(), fixedDeposit.getEndDate());
+            fixedDeposit.setTenure(Math.toIntExact(tenure));
             if (fdRate.getText().toString().equals("")) {
                 fdRate.setError("Enter Rate");
                 return;
@@ -85,8 +85,7 @@ public class CreateFdLayout extends AppCompatActivity {
                 fdAmount.setError("Enter smaller amount then Maturity amount.");
                 fdMaturityAmount.setError("Enter greater amount then Amount.");
             }
-            Long daysLeft = ChronoUnit.DAYS.between(currentDate, fixedDeposit.getEndDate());
-            fixedDeposit.setDaysLeft(Math.toIntExact(daysLeft));
+            fixedDeposit.setNotes(fdNotes.getText().toString());
             FdRepository fdRepository = new FdRepository(this);
             //checking duplicate Fd.
             List<FixedDeposit> fixedDepositList = fdRepository.getByNumber(fixedDeposit.getNumber());
@@ -142,7 +141,7 @@ public class CreateFdLayout extends AppCompatActivity {
         fdCreateDate = findViewById(R.id.editTextCreatedDate);
         fdEndDate = findViewById(R.id.editTextEndDate);
         fdBankAddress = findViewById(R.id.editTextBankAddress);
+        fdNotes = findViewById(R.id.editTextNotes);
     }
-
 
 }

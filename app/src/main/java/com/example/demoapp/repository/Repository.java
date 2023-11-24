@@ -38,6 +38,7 @@ public class Repository extends SQLiteOpenHelper {
                 PassbookConstants.COLUMN_BANK_WITH_ADDRESS + " TEXT, " +
                 PassbookConstants.COLUMN_DAYS_LEFT + " INTEGER, " +
                 PassbookConstants.COLUMN_AMOUNT + " INTEGER, " +
+                PassbookConstants.COLUMN_NOTES + " TEXT, " +
                 PassbookConstants.COLUMN_USER_ID + " INTEGER, " +  // Foreign key reference
                 "FOREIGN KEY (" + PassbookConstants.COLUMN_USER_ID + ") REFERENCES " +
                 PassbookConstants.TABLE_USER + "(" + PassbookConstants.COLUMN_ID + "))";

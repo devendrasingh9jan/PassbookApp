@@ -36,6 +36,7 @@ public class RecyclerFixedDepositAdapter extends RecyclerView.Adapter<FdViewHold
         FixedDeposit fixedDeposit = fixedDepositList.get(position);
         holder.amountValueView.setText(String.valueOf(fixedDeposit.getAmount()));
         holder.tenureValueView.setText(String.valueOf(fixedDeposit.getTenure()));
+        holder.daysLeftView.setText(String.valueOf(fixedDeposit.getDaysLeft()));
     }
 
     @Override
