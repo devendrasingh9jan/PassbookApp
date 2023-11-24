@@ -1,11 +1,13 @@
 package com.example.demoapp.adapter;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.demoapp.R;
@@ -37,6 +39,32 @@ public class RecyclerFixedDepositAdapter extends RecyclerView.Adapter<FdViewHold
         holder.amountValueView.setText(String.valueOf(fixedDeposit.getAmount()));
         holder.tenureValueView.setText(String.valueOf(fixedDeposit.getTenure()));
         holder.daysLeftView.setText(String.valueOf(fixedDeposit.getDaysLeft()));
+        int daysLeft = fixedDeposit.getDaysLeft();
+        int totalTenure = fixedDeposit.getTenure();
+        int maxProgressBarValue = 100;
+
+        // Calculate progress based on the remaining days
+        int normalizedProgress = (int) ((double) daysLeft / totalTenure * maxProgressBarValue);
+
+        // Set the progress and color based on the normalized progress
+        holder.progressBarDaysLeft.setProgress(normalizedProgress);
+        holder.progressBarDaysLeft.setProgressTintList(ColorStateList.valueOf(getColorForProgress(normalizedProgress)));
+    }
+
+    private int getColorForProgress(int progress) {
+        if (progress >= 75) {
+            // Return color for progress >= 75%
+            return ContextCompat.getColor(context, R.color.highProgressColor);
+        } else if (progress >= 50) {
+            // Return color for progress >= 50%
+            return ContextCompat.getColor(context, R.color.mediumProgressColor);
+        } else if (progress >= 25) {
+            // Return color for progress >= 25%
+            return ContextCompat.getColor(context, R.color.lowProgressColor);
+        } else {
+            // Return color for progress < 25%
+            return ContextCompat.getColor(context, R.color.veryLowProgressColor);
+        }
     }
 
     @Override

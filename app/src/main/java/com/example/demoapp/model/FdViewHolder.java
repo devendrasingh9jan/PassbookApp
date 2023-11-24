@@ -1,6 +1,7 @@
 package com.example.demoapp.model;
 
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -11,6 +12,7 @@ import com.example.demoapp.R;
 public class FdViewHolder extends RecyclerView.ViewHolder {
 
     public TextView amountValueView, tenureValueView, daysLeftView;
+    public ProgressBar progressBarDaysLeft;
     public FdViewHolder(@NonNull View itemView) {
         super(itemView);
         initializeFields(itemView);
@@ -20,5 +22,6 @@ public class FdViewHolder extends RecyclerView.ViewHolder {
         amountValueView = itemView.findViewById(R.id.textViewAmountValue);
         tenureValueView = itemView.findViewById(R.id.textViewTenureValue);
         daysLeftView = itemView.findViewById(R.id.textViewDaysLeftValue);
+        progressBarDaysLeft = itemView.findViewById(R.id.progressBarDaysLeft);
     }
 }
