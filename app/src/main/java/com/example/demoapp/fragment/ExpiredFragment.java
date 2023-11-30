@@ -34,7 +34,7 @@ public class ExpiredFragment extends Fragment {
         MainActivity mainActivity = (MainActivity) getActivity();
 
         // Initialize the adapter
-        expiredAdapter = new RecyclerFixedDepositAdapter(mainActivity, getActiveDepositList());
+        expiredAdapter = new RecyclerFixedDepositAdapter(mainActivity, getExpiredDepositList());
 
         // Set the layout manager and adapter for the active RecyclerView
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -43,7 +43,7 @@ public class ExpiredFragment extends Fragment {
         return view;
     }
 
-    private List<FixedDeposit> getActiveDepositList() {
+    private List<FixedDeposit> getExpiredDepositList() {
         MainActivity mainActivity = (MainActivity) getActivity();
         if (mainActivity != null) {
             // Access the repository and retrieve the data
@@ -55,7 +55,7 @@ public class ExpiredFragment extends Fragment {
             Log.d("ExpiredFragment", "Number of expired deposits: " + fixedDepositList.size());
 
             // Filter active deposits
-            return fixedDepositList.stream().filter(fd -> fd.getTenure() <= 0).collect(Collectors.toList());
+            return fixedDepositList.stream().filter(fd -> fd.getDaysLeft() <= 0).collect(Collectors.toList());
         }
 
         return new ArrayList<>();

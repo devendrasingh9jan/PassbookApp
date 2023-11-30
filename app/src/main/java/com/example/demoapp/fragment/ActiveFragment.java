@@ -52,7 +52,7 @@ public class ActiveFragment extends Fragment {
             Log.d("ActiveFragment", "Number of active deposits: " + fixedDepositList.size());
 
             // Filter active deposits
-            return fixedDepositList.stream().filter(fd -> fd.getTenure() > 0).collect(Collectors.toList());
+            return fixedDepositList.stream().filter(fd -> fd.getDaysLeft() > 0).collect(Collectors.toList());
         }
 
         return new ArrayList<>(); // Return an empty list if activity is null
