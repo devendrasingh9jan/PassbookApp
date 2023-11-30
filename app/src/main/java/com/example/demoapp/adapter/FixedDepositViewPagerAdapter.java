@@ -5,8 +5,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.example.demoapp.fragment.ActiveFragment;
-import com.example.demoapp.fragment.ExpiredFragment;
+import com.example.demoapp.fragment.ActiveTypeDepositFragment;
+import com.example.demoapp.fragment.ExpiredTypeDepositFragment;
 
 public class FixedDepositViewPagerAdapter extends FragmentStateAdapter {
     public FixedDepositViewPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
@@ -18,9 +18,9 @@ public class FixedDepositViewPagerAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position){
             case 1:
-                return new ExpiredFragment();
+                return new ExpiredTypeDepositFragment();
             default:
-                return new ActiveFragment();
+                return new ActiveTypeDepositFragment();
         }
     }
 

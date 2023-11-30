@@ -42,9 +42,9 @@ public class RecyclerFixedDepositAdapter extends RecyclerView.Adapter<FdViewHold
     public void onBindViewHolder(@NonNull FdViewHolder holder, int position) {
         FixedDeposit fixedDeposit = fixedDepositList.get(position);
         holder.numberView.setText(String.valueOf(fixedDeposit.getNumber()));
-        holder.maturityAmountView.setText("\u20B9"+String.valueOf(fixedDeposit.getMaturityAmount()));
-        holder.amountValueView.setText("\u20B9"+String.valueOf(fixedDeposit.getAmount()));
-        holder.tenureValueView.setText(String.valueOf(fixedDeposit.getTenure())+" "+"days");
+        holder.maturityAmountView.setText("\u20B9"+ fixedDeposit.getMaturityAmount());
+        holder.amountValueView.setText("\u20B9"+ fixedDeposit.getAmount());
+        holder.tenureValueView.setText(fixedDeposit.getTenure() +" "+"days");
         holder.daysLeftView.setText(String.valueOf(fixedDeposit.getDaysLeft()));
         holder.rateView.setText(fixedDeposit.getRate() + "%");
         int daysLeft = fixedDeposit.getDaysLeft();

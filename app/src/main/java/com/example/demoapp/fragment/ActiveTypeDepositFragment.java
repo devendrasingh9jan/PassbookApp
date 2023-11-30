@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.demoapp.R;
 import com.example.demoapp.activity.MainActivity;
@@ -22,28 +23,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ExpiredFragment extends Fragment {
-
-    private RecyclerFixedDepositAdapter expiredAdapter;
+public class ActiveTypeDepositFragment extends Fragment {
+    private RecyclerFixedDepositAdapter activeAdapter;
     private RecyclerView recyclerView;
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_expired, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_active, container, false);
         initializeFields(view);
         MainActivity mainActivity = (MainActivity) getActivity();
-
         // Initialize the adapter
-        expiredAdapter = new RecyclerFixedDepositAdapter(mainActivity, getExpiredDepositList());
-
+        activeAdapter = new RecyclerFixedDepositAdapter(mainActivity, getActiveDepositList());
         // Set the layout manager and adapter for the active RecyclerView
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(expiredAdapter);
+        recyclerView.setAdapter(activeAdapter);
 
         return view;
     }
 
-    private List<FixedDeposit> getExpiredDepositList() {
+    private List<FixedDeposit> getActiveDepositList() {
         MainActivity mainActivity = (MainActivity) getActivity();
         if (mainActivity != null) {
             // Access the repository and retrieve the data
@@ -52,16 +50,16 @@ public class ExpiredFragment extends Fragment {
             List<FixedDeposit> fixedDepositList = fdRepository.getAllFixedDeposits(loggedInUser.getId());
 
             // Log the size of the fixedDepositList for debugging
-            Log.d("ExpiredFragment", "Number of expired deposits: " + fixedDepositList.size());
+            Log.d("ActiveFragment", "Number of active deposits: " + fixedDepositList.size());
 
             // Filter active deposits
-            return fixedDepositList.stream().filter(fd -> fd.getDaysLeft() <= 0).collect(Collectors.toList());
+            return fixedDepositList.stream().filter(fd -> fd.getDaysLeft() > 0).collect(Collectors.toList());
         }
 
-        return new ArrayList<>();
+        return new ArrayList<>(); // Return an empty list if activity is null
     }
 
     private void initializeFields(View view) {
-        recyclerView = view.findViewById(R.id.recyclerViewExpiredFixedDeposits);
+        recyclerView = view.findViewById(R.id.recyclerViewActiveFixedDeposits);
     }
 }
