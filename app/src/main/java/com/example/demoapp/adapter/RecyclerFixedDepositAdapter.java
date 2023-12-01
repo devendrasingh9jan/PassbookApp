@@ -45,7 +45,7 @@ public class RecyclerFixedDepositAdapter extends RecyclerView.Adapter<FdViewHold
         holder.maturityAmountView.setText("\u20B9"+ fixedDeposit.getMaturityAmount());
         holder.amountValueView.setText("\u20B9"+ fixedDeposit.getAmount());
         holder.tenureValueView.setText(fixedDeposit.getTenure() +" "+"days");
-        holder.daysLeftView.setText(String.valueOf(fixedDeposit.getDaysLeft()));
+
         holder.rateView.setText(fixedDeposit.getRate() + "%");
         int daysLeft = fixedDeposit.getDaysLeft();
         int totalTenure = fixedDeposit.getTenure();
@@ -54,7 +54,10 @@ public class RecyclerFixedDepositAdapter extends RecyclerView.Adapter<FdViewHold
         int normalizedProgress = (int) ((double) daysLeft / totalTenure * maxProgressBarValue);
         // Set the progress and color based on the normalized progress
         holder.progressBarDaysLeft.setProgress(normalizedProgress);
-        holder.progressBarDaysLeft.setProgressTintList(ColorStateList.valueOf(getColorForProgress(normalizedProgress)));
+        int colorForProgress = getColorForProgress(normalizedProgress);
+        holder.daysLeftView.setText(String.valueOf(fixedDeposit.getDaysLeft()));
+        holder.daysLeftView.setTextColor(ColorStateList.valueOf(colorForProgress));
+        holder.progressBarDaysLeft.setProgressTintList(ColorStateList.valueOf(colorForProgress));
 
         // Set visibility based on the expanded position
         holder.expandableLayout.setVisibility(position == expandedPosition ? View.VISIBLE : View.GONE);
@@ -98,7 +101,7 @@ public class RecyclerFixedDepositAdapter extends RecyclerView.Adapter<FdViewHold
     private int getColorForProgress(int progress) {
         if (progress >= 75) {
             // Return color for progress >= 75%
-            return ContextCompat.getColor(context, R.color.highProgressColor);
+            return ContextCompat.getColor(context, R.color.green);
         } else if (progress >= 50) {
             // Return color for progress >= 50%
             return ContextCompat.getColor(context, R.color.mediumProgressColor);

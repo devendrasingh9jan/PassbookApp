@@ -11,4 +11,5 @@
     <color name="lowProgressColor">#FFA500</color>
     <color name="veryLowProgressColor">#FF0000</color>
     <color name="defaultProgressBarColor">#0000FF</color>
+    <color name="test">#AF6E6E</color>
 </resources>

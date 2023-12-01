@@ -65,7 +65,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="\u20B9 0.00"
-                android:textColor="@color/design_default_color_primary_variant" />
+                android:textColor="@color/green" />
 
         </LinearLayout>
 
@@ -89,7 +89,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="\u20B9 0.00"
-                android:textColor="@color/design_default_color_primary_variant" />
+                android:textColor="@color/green" />
 
         </LinearLayout>
 

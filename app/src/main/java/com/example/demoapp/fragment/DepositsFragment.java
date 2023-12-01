@@ -147,7 +147,7 @@ public class DepositsFragment extends Fragment {
             Log.d("ActiveFragment", "Number of active deposits: " + fixedDepositList.size());
 
             // Filter active deposits
-            return fixedDepositList.stream().filter(fd -> fd.getDaysLeft() > 0).collect(Collectors.toList());
+            return fixedDepositList.stream().filter(fd -> fd.getDaysLeft() >= 0).collect(Collectors.toList());
         }
 
         return new ArrayList<>(); // Return an empty list if activity is null
@@ -165,7 +165,7 @@ public class DepositsFragment extends Fragment {
             Log.d("ExpiredFragment", "Number of expired deposits: " + fixedDepositList.size());
 
             // Filter active deposits
-            return fixedDepositList.stream().filter(fd -> fd.getDaysLeft() <= 0).collect(Collectors.toList());
+            return fixedDepositList.stream().filter(fd -> fd.getDaysLeft() < 0).collect(Collectors.toList());
         }
 
         return new ArrayList<>();
