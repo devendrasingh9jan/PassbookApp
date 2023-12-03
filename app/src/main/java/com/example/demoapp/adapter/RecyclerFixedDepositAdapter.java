@@ -56,7 +56,7 @@ public class RecyclerFixedDepositAdapter extends RecyclerView.Adapter<FdViewHold
         holder.progressBarDaysLeft.setProgress(normalizedProgress);
         int colorForProgress = getColorForProgress(normalizedProgress);
         holder.daysLeftView.setText(String.valueOf(fixedDeposit.getDaysLeft()));
-        holder.daysLeftView.setTextColor(ColorStateList.valueOf(colorForProgress));
+        holder.daysLeftView.setTextColor(colorForProgress);
         holder.progressBarDaysLeft.setProgressTintList(ColorStateList.valueOf(colorForProgress));
 
         // Set visibility based on the expanded position
