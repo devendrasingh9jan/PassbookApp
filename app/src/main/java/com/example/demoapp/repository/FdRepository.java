@@ -116,4 +116,32 @@ public class FdRepository extends Repository{
         db.close();
         return fixedDeposits;
     }
+
+    public boolean deleteFixedDeposit(FixedDeposit fixedDeposit) {
+        SQLiteDatabase db = getWritableDatabase();
+        String whereClause = PassbookConstants.COLUMN_ID + "=?";
+        String[] whereArgs = new String[]{String.valueOf(fixedDeposit.getId())};
+        int deletedRows = db.delete(PassbookConstants.TABLE_FIXED_DEPOSIT, whereClause, whereArgs);
+        db.close();
+        return deletedRows > 0;
+    }
+
+    public boolean updateFixedDeposit(FixedDeposit fixedDeposit) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(PassbookConstants.COLUMN_NUMBER, fixedDeposit.getNumber());
+        values.put(PassbookConstants.COLUMN_AMOUNT, fixedDeposit.getAmount());
+        values.put(PassbookConstants.COLUMN_TENURE, fixedDeposit.getTenure());
+        values.put(PassbookConstants.COLUMN_RATE, fixedDeposit.getRate());
+        values.put(PassbookConstants.COLUMN_MATURITY_AMOUNT, fixedDeposit.getMaturityAmount());
+        values.put(PassbookConstants.COLUMN_CREATED_DATE, fixedDeposit.getCreatedDate().toString());
+        values.put(PassbookConstants.COLUMN_END_DATE, fixedDeposit.getEndDate().toString());
+        values.put(PassbookConstants.COLUMN_BANK_WITH_ADDRESS, fixedDeposit.getBankWithAddress());
+        values.put(PassbookConstants.COLUMN_NOTES, fixedDeposit.getNotes());
+        String whereClause = PassbookConstants.COLUMN_ID + "=?";
+        String[] whereArgs = new String[]{String.valueOf(fixedDeposit.getId())};
+        int updatedRows = db.update(PassbookConstants.TABLE_FIXED_DEPOSIT, values, whereClause, whereArgs);
+        db.close();
+        return updatedRows > 0;
+    }
 }

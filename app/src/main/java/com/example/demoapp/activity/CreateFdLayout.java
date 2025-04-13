@@ -2,6 +2,7 @@ package com.example.demoapp.activity;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.Objects;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -27,14 +28,27 @@ public class CreateFdLayout extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_fd_layout);
         initializeFields();
-        FixedDeposit fixedDeposit = new FixedDeposit();
-        setDates(fixedDeposit);
+        FixedDeposit fixedDeposit = getIncomingFixedDeposit();
+        if (fixedDeposit == null) {
+            fixedDeposit = new FixedDeposit();
+            setDates(fixedDeposit);
+        } else {
+            preFillFields(fixedDeposit);
+        }
+        final FixedDeposit finalFixedDeposit = fixedDeposit;
         create.setOnClickListener(view -> {
-            createFixedDeposit(fixedDeposit);
+            createOrUpdateFixedDeposit(finalFixedDeposit);
         });
     }
 
-    private void createFixedDeposit(FixedDeposit fixedDeposit) {
+    private FixedDeposit getIncomingFixedDeposit() {
+        Intent intent = getIntent();
+        if (intent.hasExtra("fixedDeposit")) {
+            return (FixedDeposit) intent.getSerializableExtra("fixedDeposit");
+        }
+        return null;
+    }
+    private void createOrUpdateFixedDeposit(FixedDeposit fixedDeposit) {
         Intent intent = getIntent();
         // Check if the Intent contains the "loggedInUser" extra
         if (intent.hasExtra("loggedInUser")) {
@@ -87,19 +101,26 @@ public class CreateFdLayout extends AppCompatActivity {
             }
             fixedDeposit.setNotes(fdNotes.getText().toString());
             FdRepository fdRepository = new FdRepository(this);
-            //checking duplicate Fd.
-            List<FixedDeposit> fixedDepositList = fdRepository.getByNumber(fixedDeposit.getNumber());
-            if (fixedDepositList.size()>0) {
-                Toast.makeText(this,"Fd Already exists.",Toast.LENGTH_SHORT).show();
-                return;
-            }
-            if (fdRepository.insert(fixedDeposit)) {
-                Toast.makeText(this,"Fd Created",Toast.LENGTH_SHORT).show();
-                Intent intent1 = new Intent(getIntent());
-                intent1.setClass(this,MainActivity.class);
-                startActivity(intent1);
-            } else {
-                Toast.makeText(this,"Fd Creation failed.",Toast.LENGTH_SHORT).show();
+            if (Objects.isNull(fixedDeposit.getId())) {
+                //checking duplicate Fd.
+                List<FixedDeposit> fixedDepositList = fdRepository.getByNumber(fixedDeposit.getNumber());
+                if (fixedDepositList.size()>0) {
+                    Toast.makeText(this,"Fd Already exists.",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (fdRepository.insert(fixedDeposit)) {
+                    Toast.makeText(this,"Fd Created",Toast.LENGTH_SHORT).show();
+                    finish();
+                } else {
+                    Toast.makeText(this,"Fd Creation failed.",Toast.LENGTH_SHORT).show();
+                }
+            }else{
+                if (fdRepository.updateFixedDeposit(fixedDeposit)) {
+                    Toast.makeText(this,"Fd Updated",Toast.LENGTH_SHORT).show();
+                    finish();
+                } else {
+                    Toast.makeText(this,"Fd Updation failed.",Toast.LENGTH_SHORT).show();
+                }
             }
         } else{
             Toast.makeText(this,"Some problem occurred.",Toast.LENGTH_SHORT).show();
@@ -142,6 +163,19 @@ public class CreateFdLayout extends AppCompatActivity {
         fdEndDate = findViewById(R.id.editTextEndDate);
         fdBankAddress = findViewById(R.id.editTextBankAddress);
         fdNotes = findViewById(R.id.editTextNotes);
-    }
 
+    }
+    private void preFillFields(FixedDeposit fixedDeposit) {
+        fdNumber.setText(String.valueOf(fixedDeposit.getNumber()));
+        fdAmount.setText(String.valueOf(fixedDeposit.getAmount()));
+        fdRate.setText(String.valueOf(fixedDeposit.getRate()));
+        fdMaturityAmount.setText(String.valueOf(fixedDeposit.getMaturityAmount()));
+        fdCreateDate.setText(fixedDeposit.getCreatedDate().toString());
+        fdEndDate.setText(fixedDeposit.getEndDate().toString());
+        fdBankAddress.setText(fixedDeposit.getBankWithAddress());
+        fdNotes.setText(fixedDeposit.getNotes());
+
+        // Disable number field to avoid duplication on update
+        fdNumber.setEnabled(false);
+    }
 }

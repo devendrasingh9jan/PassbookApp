@@ -1,5 +1,6 @@
 package com.example.demoapp.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import com.example.demoapp.adapter.FixedDepositViewPagerAdapter;
 import com.example.demoapp.fragment.DepositsFragment;
 import com.example.demoapp.fragment.ExpensesFragment;
 import com.example.demoapp.model.User;
+import com.example.demoapp.service.FDNotificationService;
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initializeFields();
         footerNavigation();
+        startService(new Intent(this, FDNotificationService.class));
     }
 
     private void footerNavigation() {

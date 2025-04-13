@@ -1,24 +1,32 @@
 package com.example.demoapp.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.demoapp.R;
+import com.example.demoapp.activity.CreateFdLayout;
+import com.example.demoapp.activity.MainActivity;
 import com.example.demoapp.model.FdViewHolder;
+import com.example.demoapp.model.User;
+import com.example.demoapp.repository.FdRepository;
 import com.example.demoapp.model.FixedDeposit;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.time.LocalDate;
 import java.util.List;
 
 public class RecyclerFixedDepositAdapter extends RecyclerView.Adapter<FdViewHolder> {
+
 
     private Context context;
     private List<FixedDeposit> fixedDepositList;
@@ -95,6 +103,14 @@ public class RecyclerFixedDepositAdapter extends RecyclerView.Adapter<FdViewHold
                 holder.bankAddressView.setText(fixedDeposit.getBankWithAddress());
             }
         });
+
+        // Set click listener for the entire item view
+        //holder.itemView.setOnClickListener(v -> removeItem(holder.getAdapterPosition(), new FdRepository(context)));
+
+        holder.itemView.setOnLongClickListener(v -> {
+            removeItem(holder.getAdapterPosition(), new FdRepository(context));
+            return true; // important: tells system the long click was handled
+        });
     }
 
 
@@ -118,6 +134,54 @@ public class RecyclerFixedDepositAdapter extends RecyclerView.Adapter<FdViewHold
     public int getItemCount() {
         return fixedDepositList.size();
     }
+
+    public void removeAt(int position) {
+        fixedDepositList.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, fixedDepositList.size());
+    }
+
+    public void removeItem(int position, FdRepository fdRepository) {
+        FixedDeposit fixedDeposit = fixedDepositList.get(position);
+        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(context);
+        builder.setTitle("Manage Fixed Deposit");
+        builder.setMessage("Choose an action:");
+
+        builder.setPositiveButton("Delete", (dialog, which) -> {
+            // Call the repository to delete the FD
+            if (fdRepository != null) {
+                fdRepository.deleteFixedDeposit(fixedDeposit);
+                removeAt(position);
+                Toast.makeText(context, "Fixed Deposit Removed Successfully", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(context, "Something Went Wrong! Try Again Later", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        builder.setNegativeButton("Update", (dialog, which) -> {
+            // Start the CreateFdLayout activity for updating
+            Intent intent = new Intent(context, CreateFdLayout.class);
+            intent.putExtra("fixedDeposit", fixedDeposit);
+            MainActivity mainActivity = (MainActivity) context;
+            intent.putExtra("loggedInUser",mainActivity.getLoggedInUser());
+            context.startActivity(intent);
+        });
+
+
+
+        builder.setNeutralButton("Cancel", (dialog, which) -> {
+            // Do nothing or dismiss the dialog
+        });
+
+        builder.show();
+
+    }
+
+
+    public FixedDeposit getFdAtPosition(int position) {
+        return fixedDepositList.get(position);
+    }
+
 
     public void setData(List<FixedDeposit> fixedDepositList) {
         this.fixedDepositList = fixedDepositList;
